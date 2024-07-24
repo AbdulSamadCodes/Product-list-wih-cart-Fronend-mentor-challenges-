@@ -1,0 +1,14 @@
+@font-face {
+  font-family:'RedHat-Bold';
+  src: url('/assets/fonts/static/RedHatText-Bold.ttf');
+}
+
+@font-face {
+  font-family:'RedHat-SemiBold' ;
+  src: url('/assets/fonts/static/RedHatText-SemiBold.ttf');
+}
+
+@font-face {
+  font-family:'RedHat-Regular';
+  src: url('/assets/fonts/static/RedHatText-Regular.ttf');
+}

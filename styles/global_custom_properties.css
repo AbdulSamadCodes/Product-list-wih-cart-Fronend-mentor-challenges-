@@ -1,0 +1,24 @@
+:root {
+  /* colors */
+  --clr-red: hsl(14, 86%, 42%);
+  --clr-green: hsl(159, 69%, 38%);
+
+  --clr-rose_50: hsl(20, 50%, 98%);
+  --clr-rose_100: hsl(13, 31%, 94%);
+  --clr-rose_300: hsl(14, 25%, 72%);
+  --clr-rose_400: hsl(7, 20%, 60%);
+  --clr-rose_500: hsl(12, 20%, 44%);
+  --clr-rose_900: hsl(14, 65%, 9%);
+
+  /* spacings */
+  --main_container_padding:2rem;
+  --wrapper-container-max-width:310px;
+
+  /* typography */
+  --ff-RedHat_Bold:RedHat-Bold;
+  --ff-RedHat_SemiBold:RedHat-SemiBold;
+  --ff-RedHat_Regular:RedHat-Regular;
+}
+
+
+

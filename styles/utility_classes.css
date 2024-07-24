@@ -1,0 +1,35 @@
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.fixed  {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.margin-inline-auto {
+  margin-inline: auto;
+}
+
+.display-inline {
+  display: inline;
+}
