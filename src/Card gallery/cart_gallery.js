@@ -7,7 +7,7 @@ function updateCardInfo(cardInfo) {
 
     card.querySelector("[data-dessert-category]").textContent = category;
     card.querySelector("[data-dessert-name]").textContent = name;
-    card.querySelector("[data-dessert-price]").textContent = price;
+    card.querySelector("[data-dessert-price]").textContent = `$${price}`;
   });
 }
 
