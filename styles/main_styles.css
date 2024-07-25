@@ -78,7 +78,7 @@
 
 
 .add_to_cart_btn span,
-.add_to_cart_btn img {
+.add_to_cart_btn >  img {
   min-width: fit-content;
 }
 

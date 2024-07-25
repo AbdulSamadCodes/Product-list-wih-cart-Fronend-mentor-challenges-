@@ -1,6 +1,9 @@
+
+const dessertCards = document.querySelectorAll("[data-dessert-card]");
+const dessertImgWrapper = document.querySelectorAll("[data-dessert-img-wrapper]");
+
 // function to update the cards information
 function updateCardInfo(cardInfo) {
-  const dessertCards = document.querySelectorAll("[data-dessert-card]");
 
   dessertCards.forEach(function(card,index){
     const {category, name, price} = cardInfo[index]; 
@@ -38,3 +41,12 @@ function getAndUpdateData() {
 
 getAndUpdateData();
 
+//function to add border on dessert images
+function borderOnDessertImg(index) {
+  dessertImgWrapper[index].style.border = `2px solid var(--clr-red)`;
+}
+
+//function to remove border on dessert images
+function removeborderOnDessertImg(index) {
+  dessertImgWrapper[index].style.border = `none`;
+}
