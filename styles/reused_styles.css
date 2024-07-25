@@ -2,3 +2,7 @@
   padding: var(--main_container_padding);
 }
 
+.product--cart__empty,
+.product--cart__empty img {
+  max-width: max-content  ;
+}

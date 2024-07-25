@@ -129,7 +129,7 @@ function createActiveCartBtn(addcartBtn) {
   new ActiveCartBtn(addcartBtn).createActiveCartBtn();
 }
 
-// function to clear active cart buttons
+//function to clear active cart buttons
 function clearActiveCartBtns(addCartBtns) {
   addCartBtns.forEach((addCartBtn,index) => {
     const activeCartBtn  = addCartBtn.querySelector(`.${new ActiveCartBtn(addCartBtn).className}`); 
@@ -147,7 +147,6 @@ function handleCartBtns() {
 
   addCartBtns.forEach((addCartBtn,index) => {
     addCartBtn.addEventListener("click",function() {
-        clearActiveCartBtns(addCartBtns);
         borderOnDessertImg(index);
         createActiveCartBtn(this);
     });

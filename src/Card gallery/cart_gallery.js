@@ -21,7 +21,11 @@ function updateCardImages(cardInfo) {
   dessertCards.forEach((card,index) => {
     const {image:{mobile: mobileImgSrc, tablet: tabletImgSrc, desktop: desktopImgSrc}} = cardInfo[index];
 
-    card.querySelector("[data-dessert-img]").src = mobileImgSrc;
+    const dessertImg = card.querySelector("[data-dessert-img]");
+    
+    if(window.innerWidth >= 992) dessertImg.src = desktopImgSrc;
+    else if(window.innerWidth >= 768) dessertImg.src = tabletImgSrc;
+    else dessertImg.src = mobileImgSrc;
   });
 }
 
@@ -35,6 +39,8 @@ function getAndUpdateData() {
          .then((cardInfo) => {
             updateCardInfo(cardInfo); 
             updateCardImages(cardInfo);
+            window.addEventListener("load",() => updateCardImages(cardInfo));
+            window.addEventListener("resize",() => updateCardImages(cardInfo));
         }) 
          .catch(() => alert("Oops!We have some issues"));
 }
@@ -50,3 +56,5 @@ function borderOnDessertImg(index) {
 function removeborderOnDessertImg(index) {
   dessertImgWrapper[index].style.border = `none`;
 }
+
+

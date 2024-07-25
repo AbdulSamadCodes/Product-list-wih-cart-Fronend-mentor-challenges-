@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+.align-items-start {
+  align-items: start;
+}
+
 .relative {
   position: relative;
 }
@@ -32,4 +36,8 @@
 
 .display-inline {
   display: inline;
+}
+
+.text-center {
+  text-align: center;
 }

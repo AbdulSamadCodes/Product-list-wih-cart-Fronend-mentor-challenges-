@@ -27,7 +27,10 @@
     <!-- main container-->
     <div class="main-container">
       <!-- wrapper container -->
-      <div class="wrapper-container margin-inline-auto">
+      <div class="wrapper-container grid  align-items-start  margin-inline-auto">
+
+        <div class="wrapper grid">
+
         <!-- gallery title-->
         <h1 class="gallery__title">Desserts</h1>
 
@@ -286,6 +289,7 @@
             </div>
           </div>
         </div>
+        </div>
 
         <!-- product cart-->
         <div class="product-cart" data-product-cart>
@@ -297,6 +301,22 @@
               >(0)
             </span>
           </h2>
+
+          <div class="product--cart__empty margin-inline-auto" data-product-cart-empty>
+            <div>
+              <img src="/assets/images/illustration-empty-cart.svg" alt="" class="margin-inline-auto">
+            </div>
+
+            <p class="cart__empty__message text-center">
+              Your added items will appear here
+            </p>
+            
+          </div>
+
+          </div>
+
+        </div>
+
         </div>
       </div>
     </div>
@@ -306,3 +326,4 @@
     <script src="/src/CartBtn/cart_btn.js"></script>
   </body>
 </html>
+
