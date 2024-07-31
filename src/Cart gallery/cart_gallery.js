@@ -1,10 +1,13 @@
-
 const dessertCards = document.querySelectorAll("[data-dessert-card]");
 const dessertImgWrapper = document.querySelectorAll("[data-dessert-img-wrapper]");
 
+//asynchronous function to make api call
+function getProductsData(){
+  return fetch('JSON/data.json');
+}
+
 // function to update the cards information
 function updateCardInfo(cardInfo) {
-
   dessertCards.forEach(function(card,index){
     const {category, name, price} = cardInfo[index]; 
 
@@ -29,13 +32,9 @@ function updateCardImages(cardInfo) {
   });
 }
 
-//asynchronous fuction to get data from API
-function getAndUpdateData() {
-  const getData = () => {
-    return fetch('JSON/data.json');
-  }
-
-  getData().then((responseBody) => responseBody.json())
+//function to updateCardData
+function UpdateCardUI() {
+  getProductsData().then((responseBody) => responseBody.json())
          .then((cardInfo) => {
             updateCardInfo(cardInfo); 
             updateCardImages(cardInfo);
@@ -45,7 +44,7 @@ function getAndUpdateData() {
          .catch(() => alert("Oops!We have some issues"));
 }
 
-getAndUpdateData();
+UpdateCardUI();
 
 //function to add border on dessert images
 function borderOnDessertImg(index) {

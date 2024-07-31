@@ -123,7 +123,6 @@ class DecrementOrderBtn extends OrderBtn {
   }
 }
 
-
 //funtion to create active cart button
 function createActiveCartBtn(addcartBtn) {
   new ActiveCartBtn(addcartBtn).createActiveCartBtn();
