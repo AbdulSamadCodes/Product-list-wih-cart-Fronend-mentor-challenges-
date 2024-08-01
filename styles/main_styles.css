@@ -91,7 +91,6 @@
 
 .product-cart__title {
  font-family: var(--ff-RedHat_Bold);
- color: var(--clr-red);
  font-size: var(--fs-product-cart-title);
 }
 
@@ -103,6 +102,48 @@
   font-family: var(--ff-RedHat_Bold);
   color: var(--clr-rose_500);
 }
+
+/* product card */
+
+.product__card {
+  font-family: var(--ff-RedHat_SemiBold);
+  padding-block:1.2rem;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(183, 174, 174, 0.562);
+}
+
+.product__card__category {
+  font-size: 1.4rem;
+  color: var(--clr-rose_900);
+}
+
+.product__card__info {
+  margin-block-start: .6rem;
+  gap: 1rem;
+  font-size: 1.4rem;
+}
+
+.product__card__price,
+.product__card__total {
+  color: rgb(184, 173, 173);
+}
+
+.product__card__remove-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0.2rem;
+  display: grid;
+  place-content: center;
+  border: 1px solid var(--clr-rose_500);
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
 
 
 

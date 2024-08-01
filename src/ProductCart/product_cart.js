@@ -10,7 +10,7 @@ function validateEmptyCartUI(productsArray) {
 
 //function to get the cart counter
 function getCartCount() {
-  return  parseInt(cartCounter.textContent[1]);
+  return parseInt(cartCounter.textContent.slice(1, -1));
 }
 
 //function to increment update the cart counter
@@ -22,7 +22,7 @@ function incrementCartCounter() {
 //function to increment update the cart counter
 function decrementCartCounter() {
   let currentCartCount = getCartCount();
-  cartCounter.textContent = `(${--currentCartCount})`;
+  currentCartCount <= 1 ? cartCounter.textContent = "(1)" : cartCounter.textContent = `(${--currentCartCount})`;
 }
 
 

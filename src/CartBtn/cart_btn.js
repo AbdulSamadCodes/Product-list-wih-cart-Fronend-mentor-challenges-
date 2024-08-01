@@ -1,13 +1,14 @@
 class ActiveCartBtn {
-  btnBgColor =  "hsl(14, 86%, 42%)";
-  className = "active-cart__btn"; 
+  btnBgColor = "hsl(14, 86%, 42%)";
+  className = "active-cart__btn";
+  #orderCount = 1;
 
   constructor(originalCartBtn) {
     this.originalBtn = originalCartBtn;
     this.activeCartBtn = document.createElement("button");
   }
 
- #cartBtnStyles(activeCartBtn) {
+  #cartBtnStyles(activeCartBtn) {
     activeCartBtn.style.position = "absolute";
     activeCartBtn.style.backgroundColor = this.btnBgColor;
     activeCartBtn.style.inset = "0";
@@ -16,31 +17,42 @@ class ActiveCartBtn {
     activeCartBtn.style.justifyContent = "space-Between";
     activeCartBtn.style.alignItems = "center";
     activeCartBtn.style.padding = "inherit";
+    activeCartBtn.style.pointerEvents = "none";
 
     activeCartBtn.classList.add(this.className);
-
     this.originalBtn.style.border = "none";
-  }  
+  }
 
   createActiveCartBtn() {
     this.#cartBtnStyles(this.activeCartBtn);
     this.originalBtn.appendChild(this.activeCartBtn);
-    
+
     const incrementOrderBtn = new IncrementOrderBtn("/assets/images/icon-increment-quantity.svg").getOrderBtn();
     this.activeCartBtn.appendChild(incrementOrderBtn);
 
-    const orderCount = new OrderCount();
-    orderCount.setCount();
+    const orderCount = new OrderCounterSpan();
     const orderCountSpan = orderCount.getOrderCounterSpan();
+    orderCountSpan.textContent = this.#orderCount;
     this.activeCartBtn.appendChild(orderCountSpan);
 
     const decrementOrderBtn = new DecrementOrderBtn("/assets/images/icon-decrement-quantity.svg").getOrderBtn();
     this.activeCartBtn.appendChild(decrementOrderBtn);
+
+    incrementOrderBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      orderCountSpan.textContent = ++this.#orderCount;
+      incrementCartCounter();
+    });
+
+    decrementOrderBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      this.#orderCount <= 1 ? orderCountSpan.textContent = "1" : orderCountSpan.textContent = --this.#orderCount;
+      decrementCartCounter();
+    });
   }
 }
 
-class OrderCount {
-  #orderCount = 0;
+class OrderCounterSpan {
   #color = " hsl(13, 31%, 94%)";
   #fontFamily = "RedHat-SemiBold";
 
@@ -54,24 +66,7 @@ class OrderCount {
     this.counterSpan.style.fontFamily = `var(--${this.#fontFamily})`;
   }
 
-  incrementOrderCount() {
-    this.#orderCount++;
-  }
-
-  decrementOrderCount() {
-    this.#orderCount--;
-  }
-
-  getOrderCount() {
-    return this.#orderCount;
-  }
-
-  setCount() {
-    this.counterSpan.innerText = this.getOrderCount();
-  }
-
   getOrderCounterSpan() {
-    this.setCount();
     this.#styleOrderCounterSpan();
 
     return this.counterSpan;
@@ -114,7 +109,7 @@ class OrderBtn {
 class IncrementOrderBtn extends OrderBtn {
   constructor(imgSrc) {
     super(imgSrc);
-  } 
+  }
 }
 
 class DecrementOrderBtn extends OrderBtn {
@@ -130,9 +125,9 @@ function createActiveCartBtn(addcartBtn) {
 
 //function to clear active cart buttons
 function clearActiveCartBtns(addCartBtns) {
-  addCartBtns.forEach((addCartBtn,index) => {
-    const activeCartBtn  = addCartBtn.querySelector(`.${new ActiveCartBtn(addCartBtn).className}`); 
-    if(activeCartBtn) {
+  addCartBtns.forEach((addCartBtn, index) => {
+    const activeCartBtn = addCartBtn.querySelector(`.${new ActiveCartBtn(addCartBtn).className}`);
+    if (activeCartBtn) {
       activeCartBtn.remove();
     }
 
@@ -144,12 +139,15 @@ function clearActiveCartBtns(addCartBtns) {
 function handleCartBtns() {
   let addCartBtns = document.querySelectorAll("[data-add-to-cart-btn]");
 
-  addCartBtns.forEach((addCartBtn,index) => {
-    addCartBtn.addEventListener("click",function() {
-        borderOnDessertImg(index);
-        createActiveCartBtn(this);
+  addCartBtns.forEach((addCartBtn, index) => {
+    addCartBtn.addEventListener("click", function () {
+      borderOnDessertImg(index);
+      createActiveCartBtn(this);
     });
   });
 }
 
 handleCartBtns();
+
+
+

@@ -1,9 +1,12 @@
+//an array of products
+const productsArray = [];
+
 class Product {
   constructor(product) {
     this.category = product.category;
     this.name = product.name;
     this.price = product.price;
-    this.count = 0;
+    this.count = 1;
   }
 
   incrementCount() {
@@ -13,7 +16,18 @@ class Product {
   decrementCount() {
     this.count--;
   }
+
+  setTotal() {
+    return (this.price * this.total).toFixed(2);
+  }
 }
 
+//function to create the product object
+function createProduct(index, dataArray, createProductCard) {
+  const product = new Product(dataArray[index]);
+
+  productsArray.push(product);
+  createProductCard(product);
+}
 
 

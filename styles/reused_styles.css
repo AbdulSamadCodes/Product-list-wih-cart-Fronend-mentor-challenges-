@@ -6,3 +6,20 @@
 .product--cart__empty img {
   max-width: max-content  ;
 }
+
+.product__card,
+.product__card__info {
+  display: flex;
+  align-items: center;
+
+}
+
+.product-cart__title,
+.product__card__count{
+  color: var(--clr-red);
+}
+
+.product__card__count,
+.product__card__total {
+  font-family: var(--ff-RedHat_Bold);
+}
