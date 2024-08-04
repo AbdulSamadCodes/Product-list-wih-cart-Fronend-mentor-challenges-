@@ -14,11 +14,16 @@ class Product {
   }
 
   decrementCount() {
+    if (this.count <= 1) {
+      this.count = 1;
+      return;
+    }
+
     this.count--;
   }
 
   setTotal() {
-    return (this.price * this.total).toFixed(2);
+    return (this.price * this.count).toFixed(2);
   }
 }
 

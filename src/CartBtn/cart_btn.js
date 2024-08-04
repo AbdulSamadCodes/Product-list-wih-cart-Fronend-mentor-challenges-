@@ -1,3 +1,6 @@
+const addCartBtns = document.querySelectorAll("[data-add-to-cart-btn]");
+const activeCartBtns = document.getElementsByClassName("active-cart__btn");
+
 class ActiveCartBtn {
   btnBgColor = "hsl(14, 86%, 42%)";
   className = "active-cart__btn";
@@ -6,6 +9,7 @@ class ActiveCartBtn {
   constructor(originalCartBtn) {
     this.originalBtn = originalCartBtn;
     this.activeCartBtn = document.createElement("button");
+    this.activeCartBtn.addEventListener("click", (event) => event.stopPropagation());
   }
 
   #cartBtnStyles(activeCartBtn) {
@@ -17,7 +21,6 @@ class ActiveCartBtn {
     activeCartBtn.style.justifyContent = "space-Between";
     activeCartBtn.style.alignItems = "center";
     activeCartBtn.style.padding = "inherit";
-    activeCartBtn.style.pointerEvents = "none";
 
     activeCartBtn.classList.add(this.className);
     this.originalBtn.style.border = "none";
@@ -28,7 +31,9 @@ class ActiveCartBtn {
     this.originalBtn.appendChild(this.activeCartBtn);
 
     const incrementOrderBtn = new IncrementOrderBtn("/assets/images/icon-increment-quantity.svg").getOrderBtn();
+    incrementOrderBtn.classList.add("increment-order-btn");
     this.activeCartBtn.appendChild(incrementOrderBtn);
+
 
     const orderCount = new OrderCounterSpan();
     const orderCountSpan = orderCount.getOrderCounterSpan();
@@ -36,18 +41,19 @@ class ActiveCartBtn {
     this.activeCartBtn.appendChild(orderCountSpan);
 
     const decrementOrderBtn = new DecrementOrderBtn("/assets/images/icon-decrement-quantity.svg").getOrderBtn();
+    decrementOrderBtn.classList.add("decrement-order-btn");
     this.activeCartBtn.appendChild(decrementOrderBtn);
 
     incrementOrderBtn.addEventListener("click", (event) => {
       event.stopPropagation();
       orderCountSpan.textContent = ++this.#orderCount;
-      incrementCartCounter();
+      updatCartCounter(activeCartBtns);
     });
 
     decrementOrderBtn.addEventListener("click", (event) => {
       event.stopPropagation();
       this.#orderCount <= 1 ? orderCountSpan.textContent = "1" : orderCountSpan.textContent = --this.#orderCount;
-      decrementCartCounter();
+      updatCartCounter(activeCartBtns);
     });
   }
 }
@@ -101,7 +107,6 @@ class OrderBtn {
 
   getOrderBtn() {
     this.#styleOrderBtn();
-
     return this.OrderBtn;
   }
 }
@@ -130,7 +135,6 @@ function clearActiveCartBtns(addCartBtns) {
     if (activeCartBtn) {
       activeCartBtn.remove();
     }
-
     removeborderOnDessertImg(index);
   });
 }
@@ -140,14 +144,14 @@ function handleCartBtns() {
   let addCartBtns = document.querySelectorAll("[data-add-to-cart-btn]");
 
   addCartBtns.forEach((addCartBtn, index) => {
-    addCartBtn.addEventListener("click", function () {
+    addCartBtn.addEventListener("click", function (event) {
       borderOnDessertImg(index);
       createActiveCartBtn(this);
+      updatCartCounter(activeCartBtns);
     });
   });
 }
 
 handleCartBtns();
-
 
 

@@ -3,12 +3,13 @@
   /* spacings */
   --gallery-margin-block: 1.5rem;
   --dessert-info-margin-top: 3rem;
-  --desserts-gallery-gap:2rem;
+  --desserts-gallery-gap: 2rem;
+  --product-cart-padding: 2rem 1.5rem;
 
   /* typography */
   --fs-gallery_title: 2.5rem;
-  --fs-dessert_info:1.5rem;
-  --fs-product-cart-title:1.8rem;
+  --fs-dessert_info: 1.5rem;
+  --fs-product-cart-title: 1.8rem;
 }
 
 .wrapper-container {
@@ -22,7 +23,7 @@
   letter-spacing: 0.7px;
 }
 
-.desserts-gallery-container{
+.desserts-gallery-container {
   margin-block: var(--gallery-margin-block);
   gap: var(--desserts-gallery-gap);
 }
@@ -46,7 +47,7 @@
 
 .dessert__category {
   color: var(--clr-rose_300);
-  font-size:1.3rem;
+  font-size: 1.3rem;
 }
 
 .dessert__price {
@@ -65,9 +66,9 @@
   border: 1px solid var(--clr-rose_900);
   bottom: 0;
   left: 50%;
-  transform: translate(-50%,50%);
+  transform: translate(-50%, 50%);
   z-index: 2;
-  min-width:max-content;
+  min-width: max-content;
   transition: border-color 200ms ease;
   overflow: hidden;
 }
@@ -76,9 +77,8 @@
   border-color: var(--clr-red);
 }
 
-
 .add_to_cart_btn span,
-.add_to_cart_btn >  img {
+.add_to_cart_btn > img {
   min-width: fit-content;
 }
 
@@ -86,16 +86,13 @@
 .product-cart {
   background-color: var(--clr-rose_50);
   border-radius: 0.8rem;
-  padding: 2rem 1.5rem;
+  padding: var(--product-cart-padding);
 }
 
 .product-cart__title {
- font-family: var(--ff-RedHat_Bold);
- font-size: var(--fs-product-cart-title);
-}
-
-.product--cart__empty {
-  margin-block: 2rem;;
+  font-family: var(--ff-RedHat_Bold);
+  font-size: var(--fs-product-cart-title);
+  margin-block-end: 1.5rem;
 }
 
 .cart__empty__message {
@@ -104,21 +101,19 @@
 }
 
 /* product card */
-
 .product__card {
   font-family: var(--ff-RedHat_SemiBold);
-  padding-block:1.2rem;
+  padding-block: 1.2rem;
   justify-content: space-between;
   border-bottom: 1px solid rgba(183, 174, 174, 0.562);
 }
 
 .product__card__category {
   font-size: 1.4rem;
-  color: var(--clr-rose_900);
 }
 
 .product__card__info {
-  margin-block-start: .6rem;
+  margin-block-start: 0.6rem;
   gap: 1rem;
   font-size: 1.4rem;
 }
@@ -138,34 +133,65 @@
   border-radius: 50%;
 }
 
+.products__order-total-wrapper {
+  margin-block-start: 2rem;
+}
 
+.order__total__title {
+  font-family: var(--ff-RedHat_SemiBold);
+  color: var(--clr-rose_500);
+}
 
+.order__total__price {
+  font-family: var(--ff-RedHat_Bold);
+  font-size: 1.8rem;
+}
 
+.carbon-delivery-message-wrapper {
+  background-color: var(--clr-rose_100);
+  margin-block: 2rem;
+  padding: 1.2rem;
+  max-width: max-content;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+}
 
+.carbon__message {
+  font-family: var(--ff-RedHat_Regular);
+  font-size: 1.3rem;
+}
 
+.carbon__message span {
+  display: inline;
+  font-weight: 900;
+}
 
-
-
-
+.confirm-order-btn {
+  font-family:var(--ff-RedHat_SemiBold);
+  background-color:var(--clr-red);
+  color:var(--clr-rose_100);
+  width:100%;
+  padding-block:1rem;
+  border-radius:2rem;
+}
 /* media queries */
 
 /* responsive for devices more than 575px */
-@media (min-width:575px) {
+@media (min-width: 575px) {
   :root {
-    --wrapper-container-max-width:500px    
+    --wrapper-container-max-width: 500px;
   }
 
   .desserts-gallery-container {
-    grid-template-columns:repeat(2,1fr) ;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* responsive for devices more than 700px */
-@media (min-width:700px) {
+@media (min-width: 700px) {
   :root {
-    --wrapper-container-max-width:670px;
-    --main_container_padding:4rem 2rem;
-    
+    --wrapper-container-max-width: 670px;
+    --main_container_padding: 4rem 2rem;
   }
 
   .wrapper-container {
@@ -175,19 +201,17 @@
   }
 }
 
-/* responsive for devices more than 992px */ 
-@media (min-width:992px) {
+/* responsive for devices more than 992px */
+@media (min-width: 992px) {
   :root {
-    --wrapper-container-max-width:950px    
+    --wrapper-container-max-width: 950px;
   }
 
   .desserts-gallery-container {
-    grid-template-columns:repeat(3,1fr) ;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .wrapper-container {
-    grid-template-columns:0.7fr 0.3fr ;
+    grid-template-columns: 0.67fr 0.33  fr;
   }
 }
-
-

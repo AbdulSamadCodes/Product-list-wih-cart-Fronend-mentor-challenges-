@@ -52,9 +52,23 @@ function createProductCard(product) {
   const productCard = new ProductCard().getProductCard();
 
   productCard.querySelector(".product__card__category").textContent = product.category;
-  productCard.querySelector(".product__card__count").textContent = product.count;
-  productCard.querySelector(".product__card__price").textContent = product.price;
-  productCard.querySelector(".product__card__total").textContent = product.setTotal();
+  productCard.querySelector(".product__card__count").textContent = `${product.count}x`;
+  productCard.querySelector(".product__card__price").textContent = `$${product.price}`;
+  productCard.querySelector(".product__card__total").textContent = `$${product.setTotal()}`;
+
+  let productsList;
+  productsList = Array.from(productCart.children).find((childElem) => childElem.tagName === "UL");
+
+  if (productsList) {
+    productsList.appendChild(productCard);
+    return;
+  } 
+
+  productsList = createProductsList();
+  productsList.appendChild(productCard);
 }
+
+
+
 
 

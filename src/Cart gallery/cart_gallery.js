@@ -2,14 +2,14 @@ const dessertCards = document.querySelectorAll("[data-dessert-card]");
 const dessertImgWrapper = document.querySelectorAll("[data-dessert-img-wrapper]");
 
 //asynchronous function to make api call
-function getProductsData(){
+function getProductsData() {
   return fetch('JSON/data.json');
 }
 
 // function to update the cards information
 function updateCardInfo(cardInfo) {
-  dessertCards.forEach(function(card,index){
-    const {category, name, price} = cardInfo[index]; 
+  dessertCards.forEach(function (card, index) {
+    const { category, name, price } = cardInfo[index];
 
     card.querySelector("[data-dessert-category]").textContent = category;
     card.querySelector("[data-dessert-name]").textContent = name;
@@ -20,14 +20,14 @@ function updateCardInfo(cardInfo) {
 //function to render & update the card images
 function updateCardImages(cardInfo) {
   const dessertCards = document.querySelectorAll("[data-dessert-card]");
-  
-  dessertCards.forEach((card,index) => {
-    const {image:{mobile: mobileImgSrc, tablet: tabletImgSrc, desktop: desktopImgSrc}} = cardInfo[index];
+
+  dessertCards.forEach((card, index) => {
+    const { image: { mobile: mobileImgSrc, tablet: tabletImgSrc, desktop: desktopImgSrc } } = cardInfo[index];
 
     const dessertImg = card.querySelector("[data-dessert-img]");
-    
-    if(window.innerWidth >= 992) dessertImg.src = desktopImgSrc;
-    else if(window.innerWidth >= 768) dessertImg.src = tabletImgSrc;
+
+    if (window.innerWidth >= 992) dessertImg.src = desktopImgSrc;
+    else if (window.innerWidth >= 768) dessertImg.src = tabletImgSrc;
     else dessertImg.src = mobileImgSrc;
   });
 }
@@ -35,13 +35,13 @@ function updateCardImages(cardInfo) {
 //function to updateCardData
 function UpdateCardUI() {
   getProductsData().then((responseBody) => responseBody.json())
-         .then((cardInfo) => {
-            updateCardInfo(cardInfo); 
-            updateCardImages(cardInfo);
-            window.addEventListener("load",() => updateCardImages(cardInfo));
-            window.addEventListener("resize",() => updateCardImages(cardInfo));
-        }) 
-         .catch(() => alert("Oops!We have some issues"));
+    .then((cardInfo) => {
+      updateCardInfo(cardInfo);
+      updateCardImages(cardInfo);
+      window.addEventListener("load", () => updateCardImages(cardInfo));
+      window.addEventListener("resize", () => updateCardImages(cardInfo));
+    })
+    .catch(() => alert("Oops!We have some issues"));
 }
 
 UpdateCardUI();
