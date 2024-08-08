@@ -7,6 +7,7 @@ class Product {
     this.name = product.name;
     this.price = product.price;
     this.count = 1;
+    this.thumbnail = product.image.thumbnail;
   }
 
   incrementCount() {

@@ -23,6 +23,7 @@ function validateEmptyCart(productsArray) {
 //function to create the products list on UI
 function createProductsList() {
   const productsList = document.createElement("ul");
+  productsList.className = "products-list";
   productCart.appendChild(productsList);
 
   return productsList;
@@ -30,7 +31,7 @@ function createProductsList() {
 
 function createOrderTotalAndConfirmBtn(productsArray) {
   const orderTotalWrapper = document.createElement("div");
-  orderTotalWrapper.classList.add("products__order-total-wrapper", "flex", "align-items-center","justify-content-between");
+  orderTotalWrapper.classList.add("products__order-total-wrapper", "flex", "align-items-center", "justify-content-between");
 
   // order total element 
   const orderTotalTitle = document.createElement("span");
@@ -42,10 +43,10 @@ function createOrderTotalAndConfirmBtn(productsArray) {
 
   orderTotalWrapper.appendChild(orderTotalTitle);
   orderTotalWrapper.appendChild(orderTotalPrice);
-  
+
   // carbon delivery message
   const carbonDeliveryMessageWrapper = document.createElement("div");
-  carbonDeliveryMessageWrapper.classList.add("carbon-delivery-message-wrapper","margin-inline-auto","flex","align-items-center");
+  carbonDeliveryMessageWrapper.classList.add("carbon-delivery-message-wrapper", "margin-inline-auto", "flex", "align-items-center");
 
   const treeImg = document.createElement("img");
   treeImg.src = "/assets/images/icon-carbon-neutral.svg";
@@ -59,10 +60,10 @@ function createOrderTotalAndConfirmBtn(productsArray) {
 
   //confirm order button
   const confirmOrderBtn = document.createElement("button");
-  confirmOrderBtn.classList.add("confirm-order-btn","grid","place-content-center");
+  confirmOrderBtn.classList.add("confirm-order-btn", "grid", "place-content-center", "primary-btn");
   confirmOrderBtn.textContent = "Confirm Order";
+  confirmOrderBtn.addEventListener("click", handleConfirmOrderBtn);
 
-  
   productCart.appendChild(orderTotalWrapper);
   productCart.appendChild(carbonDeliveryMessageWrapper);
   productCart.appendChild(confirmOrderBtn);
@@ -70,13 +71,13 @@ function createOrderTotalAndConfirmBtn(productsArray) {
 
 function calculateAndUpdateOrdersTotal() {
   const orderTotalSpan = document.querySelector(".order__total__price");
-  const productsTotalSpans = document.querySelectorAll(".product__card__total");  
-  
-  const totalPrice = Array.from(productsTotalSpans).reduce((total,productTotalSpan) => {
-    return total+=parseFloat(productTotalSpan.textContent.slice(1));
-  },0);
+  const productsTotalSpans = document.querySelectorAll(".product__card__total");
 
-  if(orderTotalSpan) {
+  const totalPrice = Array.from(productsTotalSpans).reduce((total, productTotalSpan) => {
+    return total += parseFloat(productTotalSpan.textContent.slice(1));
+  }, 0);
+
+  if (orderTotalSpan) {
     orderTotalSpan.textContent = `$${totalPrice.toFixed(2)}`;
   }
 }

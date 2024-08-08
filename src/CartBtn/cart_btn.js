@@ -48,12 +48,14 @@ class ActiveCartBtn {
       event.stopPropagation();
       orderCountSpan.textContent = ++this.#orderCount;
       updatCartCounter(activeCartBtns);
+      incrementProductCount(event, getProductCard)
     });
 
     decrementOrderBtn.addEventListener("click", (event) => {
       event.stopPropagation();
       this.#orderCount <= 1 ? orderCountSpan.textContent = "1" : orderCountSpan.textContent = --this.#orderCount;
       updatCartCounter(activeCartBtns);
+      decrementProductCount(event, getProductCard);
     });
   }
 }

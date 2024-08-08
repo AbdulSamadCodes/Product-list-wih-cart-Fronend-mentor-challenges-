@@ -6,10 +6,17 @@
   --desserts-gallery-gap: 2rem;
   --product-cart-padding: 2rem 1.5rem;
 
+  /* widths and heights */
+  --confirm-order-thumbnail-width: 60px;
+  --product-card-remove-btn-width: 20px;
+
   /* typography */
   --fs-gallery_title: 2.5rem;
   --fs-dessert_info: 1.5rem;
+  --fs-card-category: 1.4rem;
   --fs-product-cart-title: 1.8rem;
+  --fs-dialog-title: 3rem;
+  --fs-orders-total: 2.3rem;
 }
 
 .wrapper-container {
@@ -103,38 +110,28 @@
 /* product card */
 .product__card {
   font-family: var(--ff-RedHat_SemiBold);
-  padding-block: 1.2rem;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(183, 174, 174, 0.562);
-}
-
-.product__card__category {
-  font-size: 1.4rem;
 }
 
 .product__card__info {
   margin-block-start: 0.6rem;
   gap: 1rem;
-  font-size: 1.4rem;
 }
 
 .product__card__price,
-.product__card__total {
+.product__card__total,
+.confirm__product__price {
   color: rgb(184, 173, 173);
 }
 
 .product__card__remove-btn {
-  width: 20px;
-  height: 20px;
+  width: var(--product-card-remove-btn-width);
+  aspect-ratio: 1/1;
   padding: 0.2rem;
   display: grid;
   place-content: center;
   border: 1px solid var(--clr-rose_500);
   border-radius: 50%;
-}
-
-.products__order-total-wrapper {
-  margin-block-start: 2rem;
 }
 
 .order__total__title {
@@ -143,8 +140,7 @@
 }
 
 .order__total__price {
-  font-family: var(--ff-RedHat_Bold);
-  font-size: 1.8rem;
+  font-size: var(--fs-orders-total);
 }
 
 .carbon-delivery-message-wrapper {
@@ -166,14 +162,67 @@
   font-weight: 900;
 }
 
-.confirm-order-btn {
-  font-family:var(--ff-RedHat_SemiBold);
-  background-color:var(--clr-red);
-  color:var(--clr-rose_100);
-  width:100%;
-  padding-block:1rem;
-  border-radius:2rem;
+/* confirm order dialog */
+.order-confirm-dialog {
+  position: fixed;
+  padding: 2.5rem 1.5rem 1.5rem;
+  top: 50%;
+  left: 50%;
+  width: min(100%, 400px);
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  border: none;
+  border-radius: 1.2rem;
+  scrollbar-width: thin;
 }
+
+.order-confirm-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dialog__title {
+  font-family: var(--ff-RedHat_Bold);
+  margin-block-start: 1rem;
+  font-size: var(--fs-dialog-title);
+  color: var(--clr-rose_900);
+  line-height: 1.7;
+}
+
+.dialog__subtitle {
+  font-family: var(--ff-RedHat_Regular);
+  color: var(--clr-rose_500);
+  font-weight: 500;
+}
+
+.dialog__list-wrapper {
+  margin-block-start: 2rem;
+  background-color: #fdf8f6;
+  padding: 1.5rem 2.5rem;
+  border-radius: 1.2rem;
+}
+
+.confirm__order__card {
+  font-family: var(--ff-RedHat_SemiBold);
+  display: flex;
+  gap: 1.5rem;
+}
+
+.thumbnail__wrapper {
+  width: var(--confirm-order-thumbnail-width);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.confirm__order__card .wrapper {
+  margin-block-start: 1.5rem;
+  gap: 2rem;
+}
+
+.confirm__product__cart__total {
+  margin-inline-start: auto;
+  align-self: center;
+}
+
 /* media queries */
 
 /* responsive for devices more than 575px */
@@ -212,6 +261,6 @@
   }
 
   .wrapper-container {
-    grid-template-columns: 0.67fr 0.33  fr;
+    grid-template-columns: 0.67fr 0.33fr;
   }
 }

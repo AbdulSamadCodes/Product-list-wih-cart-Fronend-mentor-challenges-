@@ -26,6 +26,7 @@
   <body>
     <!-- main container-->
     <div class="main-container">
+
       <!-- wrapper container -->
       <div class="wrapper-container grid  align-items-start  margin-inline-auto">
 
@@ -314,8 +315,33 @@
           </div>
 
         </div>
-        </div>
-        </div>
+      </div>
+
+        <!-- order confirmation dialog box-->
+      
+        <dialog class="order-confirm-dialog" >
+            <img src="/assets/images/icon-order-confirmed.svg" width="30">
+
+            <div class = "dialog__text">
+                <h2 class="dialog__title">
+                  Order Confirmed
+                </h2>
+
+                <p class= "dialog__subtitle">
+                  We hope you enjoy your food! 
+                </p>
+            </div>
+
+            <div class="dialog__list-wrapper">
+               <div class="confirm-order-list">
+               </div>
+            </div>
+
+            <button class = "start-new-order-btn primary-btn" data-start-new-order-btn>
+              Start New Order
+            </button> 
+         </dialog>
+    </div>
       </div>
     </div>
 
@@ -325,9 +351,10 @@
     <script src="/src/Products/products.js"></script>
     <script src="/src/Products/products_data.js"></script>
     <script src="/src/ProductCart/product_cart.js"></script>
-    <script src="/src/ProductCart/products_list.js"></script>
     <script src="/src/ProductCart/product_card.js"></script>
-
+    <script src="/src/Confirm order/confirm_order.js"></script>
+    <script src="/src/Confirm order/confirm_order_card.js"></script>
+    <script src="/src/Confirm order/start_new_order.js"></script>
   </body>
 </html>
 

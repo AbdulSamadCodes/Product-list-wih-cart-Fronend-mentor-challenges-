@@ -40,43 +40,38 @@ function handleProductsInCart() {
 handleProductsInCart();
 
 //function to increment product count 
-function incrementProductCount(getProductCard,) {
-  const incrementOrderBtns = document.querySelectorAll(".increment-order-btn");
+function incrementProductCount(event, getProductCard) {
+  if (!event.target) {
+    return;
+  }
 
-  incrementOrderBtns.forEach((incrementBtn) => {
-    incrementBtn.addEventListener("click", function (event) {
-      const productCategoryName = event.currentTarget.parentElement.parentElement.parentElement.nextElementSibling.querySelector(".dessert__category").textContent;
+  const productCategoryName = event.currentTarget.parentElement.parentElement.parentElement.nextElementSibling.querySelector(".dessert__category").textContent;
 
-      const product = productsArray.find((product) => product.category === productCategoryName);
-      product.incrementCount();
+  const product = productsArray.find((product) => product.category === productCategoryName);
+  product.incrementCount();
 
-      const incrementedProduct = getProductCard(product);
-      incrementedProduct.querySelector(".product__card__count").textContent = `${product.count}x`;
-      incrementedProduct.querySelector(".product__card__total").textContent = `$${product.setTotal()}`;
+  const incrementedProduct = getProductCard(product);
+  incrementedProduct.querySelector(".product__card__count").textContent = `${product.count}x`;
+  incrementedProduct.querySelector(".product__card__total").textContent = `$${product.setTotal()}`;
 
-      calculateAndUpdateOrdersTotal();
-    })
-  });
+  calculateAndUpdateOrdersTotal();
 }
 
 //function to decrement product count 
-function decrementProductCount(getProductCard) {
-  const incrementOrderBtns = document.querySelectorAll(".decrement-order-btn");
+function decrementProductCount(event, getProductCard) {
+  if (!event.target) {
+     return;
+  }
 
-  incrementOrderBtns.forEach((incrementBtn) => {
-    incrementBtn.addEventListener("click", function (event) {
-      const productCategoryName = event.currentTarget.parentElement.parentElement.parentElement.nextElementSibling.querySelector(".dessert__category").textContent;
+  const productCategoryName = event.currentTarget.parentElement.parentElement.parentElement.nextElementSibling.querySelector(".dessert__category").textContent
+  const product = productsArray.find((product) => product.category === productCategoryName);
+  product.decrementCount();
 
-      const product = productsArray.find((product) => product.category === productCategoryName);
-      product.decrementCount();
+  const decrementedProduct = getProductCard(product);
+  decrementedProduct.querySelector(".product__card__count").textContent = `${product.count}x`;
+  decrementedProduct.querySelector(".product__card__total").textContent = `$${product.setTotal()}`;
 
-      const decrementedProduct = getProductCard(product);
-      decrementedProduct.querySelector(".product__card__count").textContent = `${product.count}x`;
-      decrementedProduct.querySelector(".product__card__total").textContent = `$${product.setTotal()}`;
-
-      calculateAndUpdateOrdersTotal();
-    })
-  });
+  calculateAndUpdateOrdersTotal();
 }
 
 //function to update the product cart UI on increment & decrement 
@@ -88,9 +83,28 @@ function getProductCard(product) {
   return incrementedProduct;
 }
 
+//function to delete product from product array
+function deleteProduct(removeCardBtn) {
+  const deletedProduct = productsArray.find((product) => {
+    return product.category === removeCardBtn.parentElement.querySelector(".product__card__category").textContent;
+  });
+  const deletedProductIndex = productsArray.indexOf(deletedProduct);
 
+  productsArray.splice(deletedProductIndex, 1);
+}
 
+function makeThumbnails(dataArray, productsArray) {
+  const thumbnails = [];
 
+  for (const product of productsArray) {
+    const thumbnailProduct = dataArray.find((productData) => productData.category === product.category);
+
+    const { image: { thumbnail } } = thumbnailProduct;
+    thumbnails.push(thumbnail);
+  }
+
+  return thumbnails;
+}
 
 
 
